@@ -1,11 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const registerRoutes = require("../controllers/register/routes");
-const loginRoutes = require("../controllers/login/routes");
-const userRoutes = require("../controllers/user/routes");
+const usersRoutes = require("../controllers/users/routes");
+const kelasRoutes = require("../controllers/kelas/routes");
 
-router.use("/register", registerRoutes);
-router.use("/login", loginRoutes);
-router.use("/user", userRoutes);
+router.use("/users", usersRoutes);
+router.use("/kelas", kelasRoutes);
 
 module.exports = router;

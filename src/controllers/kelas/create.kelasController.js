@@ -13,18 +13,18 @@ const service = async function (req, res, next) {
 };
 
 const validation = [
-     body("nama")
+     body("namaKelas")
           .notEmpty()
           .withMessage("Nama Kelas Wajib diisi")
           .custom(async (value) => {
-               const dataKelas = await kelas.findOne({ where: { nama: value } });
+               const dataKelas = await Kelas.findOne({ where: { nama: value } });
                if (dataKelas) {
                     return Promise.reject(`Nama Kelas ${value} sudah digunakan`);
                }
                return true;
           }),
 
-     body("code").notEmpty().withMessage("kode Kelas wajib diisi"),
+     body("kodeKelas").notEmpty().withMessage("kode Kelas wajib diisi"),
      body("status").notEmpty().withMessage("Status tidak boleh kosong").isIn(["fullstack", "data science"]).withMessage("status tidak sesuai"),
 ];
 module.exports = { service, validation };
