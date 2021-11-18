@@ -1,5 +1,5 @@
 "use strict";
-const { Model } = require("sequelize");
+const { Model, Sequelize } = require("sequelize");
 const { genSaltSync, hashSync } = require("bcrypt");
 module.exports = (sequelize, DataTypes) => {
      class users extends Model {
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
                id: {
                     type: DataTypes.UUID,
                     primaryKey: true,
-                    defaultValue: DataTypes.UUIDV4,
+                    defaultValue: Sequelize.UUIDV4,
                },
                nama: DataTypes.STRING,
                tempatLahir: DataTypes.STRING,
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
                alamat: DataTypes.STRING,
                email: DataTypes.STRING,
                password: {
-                    type: DataTypes.STRING(12),
+                    type: DataTypes.STRING,
                     set(val) {
                          this.setDataValue("password", hashSync(val, genSaltSync(10)));
                     },
